@@ -1,0 +1,24 @@
+name: Quiet
+version: ${version}
+main: kr.cjih.quiet.plugin.QuietPlugin
+author: cjihkr
+api-version: '1.21'
+permissions:
+  quiet.quiet:
+    description: "Allows the use of /quiet command"
+    default: op
+  quiet.call:
+    description: "Allows the use of /call command"
+    default: true
+commands:
+  quiet:
+    description: "Set whether to use quiet mode"
+    usage: "Usage: /quiet [true|false]"
+    permission: quiet.quiet
+    permission-message: You do not have permission to use this command.
+  call:
+    description: "Send the message to OP"
+    usage: "Usage: /call [message]"
+    aliases: 호출
+    permission: quiet.call
+    permission-message: You do not have permission to use this command.
