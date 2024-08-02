@@ -8,6 +8,9 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
 class EventListener(private val plugin: QuietPlugin) : Listener {
+
+    private val allowedCommands = listOf("/call ", "/호출 ", "/quiet:call ", "/quiet:호출 ")
+
     @EventHandler
     fun onAsyncChat(event: AsyncChatEvent) {
         if (plugin.quietMode && !event.player.isOp) {
@@ -18,7 +21,7 @@ class EventListener(private val plugin: QuietPlugin) : Listener {
 
     @EventHandler
     fun onPlayerCommand(event: PlayerCommandPreprocessEvent) {
-        if (plugin.quietMode && !event.player.isOp && !(event.message.startsWith("/call ") || event.message.startsWith("/호출 "))) {
+        if (plugin.quietMode && !event.player.isOp && allowedCommands.none { event.message.startsWith(it) }) {
             event.player.sendMessage(Component.text("운영자가 명령어를 제한한 상태입니다. 호출 명령어만 사용할 수 있습니다.", NamedTextColor.RED))
             event.isCancelled = true
         }

@@ -1,33 +1,27 @@
 plugins {
     kotlin("jvm") version "2.0.20-RC"
+    id("io.papermc.paperweight.userdev") version "1.7.1"
     id("com.github.johnrengelman.shadow") version "8.1.1"
 }
 
 group = "kr.cjih"
-version = properties["version"]!!
+version = "1.1"
 
 repositories {
     mavenCentral()
-    maven("https://repo.papermc.io/repository/maven-public/") {
-        name = "papermc-repo"
-    }
-    maven("https://oss.sonatype.org/content/groups/public/") {
-        name = "sonatype"
-    }
 }
 
 dependencies {
-    compileOnly("io.papermc.paper:paper-api:1.21-R0.1-SNAPSHOT")
+    paperweight.paperDevBundle("1.21-R0.1-SNAPSHOT")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 }
 
-val targetJavaVersion = 22
 kotlin {
-    jvmToolchain(targetJavaVersion)
+    jvmToolchain(21)
 }
 
-tasks.build {
-    dependsOn("shadowJar")
+tasks.assemble {
+    dependsOn(tasks.reobfJar)
 }
 
 tasks.processResources {
