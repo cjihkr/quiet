@@ -13,7 +13,7 @@ permissions:
 commands:
   quiet:
     description: "Set whether to use quiet mode"
-    usage: "Usage: /quiet [true|false]"
+    usage: "Usage: /quiet [enable|disable] (true|false)"
     permission: quiet.quiet
     permission-message: You do not have permission to use this command.
   call:

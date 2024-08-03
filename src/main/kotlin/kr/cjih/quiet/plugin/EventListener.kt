@@ -8,7 +8,6 @@ import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerCommandPreprocessEvent
 
 class EventListener(private val plugin: QuietPlugin) : Listener {
-
     private val allowedCommands = listOf("/call ", "/호출 ", "/quiet:call ", "/quiet:호출 ")
 
     @EventHandler
